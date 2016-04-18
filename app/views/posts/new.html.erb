@@ -1,0 +1,19 @@
+<h1> Add a New Post </h1>
+
+<%= form_for @post do |p| %>
+  <div>
+    <%= p.label :title, "Title: " %>
+    <%= p.text_field :title %>
+  </div>
+  <br />
+  <div>
+    <%= p.label :body, "Body: " %>
+    <br />
+    <%= p.text_area :body %>
+  </div>
+  <br />
+  <%= p.submit %>
+
+<% end %>
+
+<%= alert %>

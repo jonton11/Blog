@@ -1,0 +1,18 @@
+<h2> Edit Post </h2>
+
+<%= form_for @post do |p| %>
+  <div>
+    <%= p.label      :title, "Title: " %>
+    <%= p.text_field :title %>
+  </div>
+  <br />
+  <div>
+    <%= p.label     :body, "Body: " %>
+    <br />
+    <%= p.text_area :body %>
+  </div>
+  <br />
+  <%= p.submit %>
+<% end %>
+<hr />
+<%= link_to "Post Page", post_path(@post) %>

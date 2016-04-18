@@ -8,6 +8,13 @@
 </head>
 <body>
 
+<%= link_to "Index", home_path %>
+|
+<%= link_to "About Page", home_about_path, method: :get %>
+|
+<%= link_to "Blog Posts", posts_path %>
+
+<hr />
 <%= yield %>
 
 </body>

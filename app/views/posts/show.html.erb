@@ -1,0 +1,21 @@
+<h2> Post Title: <%= @post.title %>  </h2>
+
+<%= notice %>
+
+<p>  Body: <%= @post.body %> </p>
+
+<hr />
+
+<%= link_to "Edit", edit_post_path(@post) %>
+|
+<%= link_to "Delete", post_path(@post), data: {confirm: "Are you sure you want to delete this post?"}, method: :delete%>
+
+<h3> Submit a Comment </h3>
+
+<%= form_for [@post, @comment] do |c| %>
+  <%= c.label :body, "Comment: " %>
+  <br />
+  <%= c.text_area :body %>
+  <br /> <br />
+  <%= c.submit "Submit Comment" %>
+<% end %>

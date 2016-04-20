@@ -19,10 +19,13 @@ class PostsController < ApplicationController
   end
 
   def show
+    @comment = Comment.new
   end
 
   def index
-    @posts = Post.all
+    # Sort by order and pagination with kaminari gem
+    @posts = Post.order("id DESC").page(params[:page]).per(10)
+    @posts = Post.search(params[:term]).page(params[:page]).per(10) if params[:term].present?
   end
 
   def edit

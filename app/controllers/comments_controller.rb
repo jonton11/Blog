@@ -7,7 +7,8 @@ class CommentsController < ApplicationController
 
     @comment = Comment.new comment_params
     @comment.post = @post
-    # Why is my comment returning as nil?
+    # Why is my comment nil? --> SOLVED, needed @comment = Comment.new in SHOW
+    # method of POSTS controller
 
     if @comment.save
       redirect_to post_path(@post), notice: "Comment successful"
@@ -19,7 +20,10 @@ class CommentsController < ApplicationController
   end
 
   def destroy
-    # To be implemented
+    post = Post.find_params[:post_id]
+    review = Review.find_params[:id]
+    review.destroy
+    redirect_to post_path(post), notice:   "Comment deleted."
   end
 
 end

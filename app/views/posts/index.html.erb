@@ -1,11 +1,28 @@
 <h1> All Posts </h1>
 
-<%= link_to "New Post", new_post_path %>
+<%= form_tag posts_path, :method => 'get' do %>
+<p>
+  <%= text_field_tag :term, params[:term] %>
+  <%= submit_tag "Search", :name => nil %>
+</p>
+<% end %>
 <br />
 <br />
 
-<% @posts.each do |p| %>
-  <div>
-    <%= link_to p.title, post_path(p) %>
-  </div>
+<% notice %>
+
+<% if @posts.count(:all) == 0 %>
+  <p> No posts found. </p>
+  <%= link_to "All Posts", posts_path %>
+<% end %>
+
+<% unless @posts.count(:all) == 0 %>
+  <% @posts.each do |p| %>
+    <div>
+      <%= link_to p.title, post_path(p) %>
+    </div>
+  <% end %>
+
+<%= paginate @posts %>
+
 <% end %>

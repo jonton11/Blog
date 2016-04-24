@@ -1,14 +1,25 @@
-class Post < ActiveRecord::Base
-  validates :title, presence: true, uniqueness: true
+class Post < ActiveRecord::Base # :nodoc:
+  validates :title, presence: true,
+                    uniqueness: true,
+                    length: { minimum: 7 }
+
+  validates :body, presence: true
 
   has_many :comments, dependent: :destroy
 
   def self.search(search)
     if search
-      self.where(["title ILIKE ? OR body ILIKE ?", "%#{search}%", "%#{search}%"])
+      where(['title ILIKE ? OR body ILIKE ?', "%#{search}%", "%#{search}%"])
     else
-      self.all
+      all
     end
   end
 
+  def body_snippet
+    if body.length > 100
+      body[0..99] + '...'
+    else
+      body
+    end
+  end
 end

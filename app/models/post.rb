@@ -6,6 +6,8 @@ class Post < ActiveRecord::Base # :nodoc:
   validates :body, presence: true
 
   has_many :comments, dependent: :destroy
+  belongs_to :user
+  belongs_to :category
 
   def self.search(search)
     if search

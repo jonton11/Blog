@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
-  # The priority is based upon order of creation: first created -> highest priority.
+  # The priority is based upon order of creation: first created -> highest
+  # priority.
   # See how all your routes lay out with "rake routes".
 
   # Only 2 routes needed for home controller atm
@@ -13,8 +14,12 @@ Rails.application.routes.draw do
     resources :comments, only: [:create, :destroy]
   end
 
+  resources :users, only: [:new, :create]
+  resources :sessions, only: [:new, :create] do
+    delete :destroy, on: :collection
+  end
   # You can have the root of your site routed with "root"
-  root 'home#index'
+  root 'homes#index'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
@@ -22,7 +27,8 @@ Rails.application.routes.draw do
   # Example of named route that can be invoked with purchase_url(id: product.id)
   #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
 
-  # Example resource route (maps HTTP verbs to controller actions automatically):
+  # Example resource route (maps HTTP verbs to controller actions
+  # automatically):
   #   resources :products
 
   # Example resource route with options:

@@ -1,15 +1,15 @@
 <h1> All Posts </h1>
 
 <%= form_tag posts_path, :method => 'get' do %>
-<p>
+<p class='container'>
   <%= text_field_tag :term, params[:term] %>
   <%= submit_tag "Search", :name => nil %>
 </p>
 <% end %>
-<br />
-<br />
 
 <% notice %>
+
+<div class='container'>
 
 <% if @posts.count(:all) == 0 %>
   <p> No posts found. </p>
@@ -22,6 +22,7 @@
       <%= link_to p.title, post_path(p) %>
     </div>
   <% end %>
+</div>
 
 <%= paginate @posts %>
 

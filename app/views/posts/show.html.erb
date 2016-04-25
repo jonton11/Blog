@@ -1,8 +1,10 @@
-<h2> Post Title: <%= @post.title %>  </h2>
 
 <%= notice %>
+<div class="container">
 
-<p>  Body: <%= @post.body %> </p>
+<h2> <%= @post.title %>  </h2>
+<br />
+<p> <%= @post.body %> </p>
 
 <hr />
 
@@ -12,12 +14,14 @@
 
 <h3> Submit a Comment </h3>
 
-<%= form_for [@post, @comment] do |c| %>
+<%= form_for [@post, @comment], :html => {:class => 'form-vertical'} do |c| %>
+<div class='form-group'>
   <%= c.label :body, "Comment: " %>
   <br />
-  <%= c.text_area :body %>
+  <%= c.text_area :body, :class => "form-control", :rows => "5" %>
   <br /> <br />
-  <%= c.submit "Submit Comment" %>
+  <%= c.submit "Submit Comment", class: "btn btn-default btn-md" %>
+</div>
 <% end %>
 
 <hr />
@@ -26,7 +30,8 @@
 
 <% @post.comments.each do |c| %>
   <%= c.body %>
-  <%= link_to "delete", post_comment_path(@post, c), data: {confirm: "Are you sure?"}, method: :delete %>
+  <%= link_to "Delete Comment", post_comment_path(@post, c), data: {confirm: "Are you sure?"}, method: :delete %>
   <br />
   <br />
 <%end%>
+</div>

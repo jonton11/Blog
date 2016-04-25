@@ -1,0 +1,17 @@
+<h1> Sign In </h1>
+
+<div class="container">
+  <%= form_tag sessions_path do %>
+    <div class="form-group">
+      <%= label_tag :email %>
+      <%= email_field_tag :email, nil, { placeholder: "johnsmith@email.com", class: "form-control" } %>
+    </div>
+    <div class='form-group'>
+      <%= label_tag :password %>
+      <%= password_field_tag :password, nil, { class: "form-control" }%>
+    </div>
+    <div>
+      <%= submit_tag "Log In", class: "btn btn-default btn-sm" %>
+    </div>
+  <% end %>
+</div>

@@ -13,6 +13,19 @@ class UsersController < ApplicationController # :nodoc:
     end
   end
 
+  def edit
+    @user = User.find(current_user)
+  end
+
+  def update
+    @user = User.find(current_user)
+    if new_password && @user.update(user_params)
+      redirect_to posts_path, notice: 'Account information updated!'
+    else
+      render :edit
+    end
+  end
+
   private
 
   def user_params
@@ -21,5 +34,9 @@ class UsersController < ApplicationController # :nodoc:
                                  :email,
                                  :password,
                                  :password_confirmation)
+  end
+
+  def new_password
+    (params[:old_password] != params['user']['password']) && (params['user']['password'] == params['user']['password_confirmation'])
   end
 end

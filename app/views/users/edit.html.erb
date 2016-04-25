@@ -1,4 +1,4 @@
-<h1> Sign Up </h1>
+<h1> Change Information </h1>
 
 <% if @user.errors.any? %>
   <ul>
@@ -15,24 +15,28 @@
 <%= form_for @user, :html => {:class => 'form-vertical'} do |f| %>
   <div class='form-group'>
     <%= f.label      :first_name, "First Name" %>
-    <%= f.text_field :first_name, :class => "form-control", :placeholder => "First Name" %>
+    <%= f.text_field :first_name, :class => "form-control"%>
   </div>
   <div class='form-group'>
     <%= f.label      :last_name, "Last Name" %>
-    <%= f.text_field :last_name, :class => "form-control", :placeholder => "Last Name" %>
+    <%= f.text_field :last_name, :class => "form-control" %>
   </div>
   <div class='form-group'>
     <%= f.label       :email %>
-    <%= f.email_field :email, :class => "form-control", :placeholder => "johnsmith@email.com" %>
+    <%= f.email_field :email, :class => "form-control" %>
   </div>
   <div class='form-group'>
-    <%= f.label          :password %>
+    <%= f.label          :old_password %>
+    <%= f.password_field :old_password, :class => "form-control" %>
+  </div>
+  <div class='form-group'>
+    <%= f.label       :password %>
     <%= f.password_field :password, :class => "form-control" %>
   </div>
   <div class='form-group'>
-    <%= f.label          :password_confirmation, "Password Confirmation" %>
+    <%= f.label          :password_confirmation %>
     <%= f.password_field :password_confirmation, :class => "form-control" %>
   </div>
-    <%= f.submit "Sign Up", class: "btn btn-default btn-md" %>
+    <%= f.submit "Save", class: "btn btn-default btn-md" %>
 <% end %>
 </div>

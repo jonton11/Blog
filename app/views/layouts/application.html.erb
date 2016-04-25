@@ -18,7 +18,7 @@
     </ul>
     <ul class="nav navbar-nav navbar-right">
       <% if user_signed_in? %>
-        <li> Hello, <%= current_user.full_name %> </li>
+        <li> <%= link_to "#{current_user.full_name}", edit_user_path(current_user) %> </li>
         <li> <%= link_to "Logout", sessions_path, method: :delete,
         data: {confirm: "are you sure you want to log out?"}%> </li>
       <% else %>

@@ -1,17 +1,8 @@
 <h2> Edit Post </h2>
 
-<%= form_for @post do |p| %>
-  <div>
-    <%= p.label      :title, "Title: " %>
-    <%= p.text_field :title %>
-  </div>
-  <br />
-  <div>
-    <%= p.label     :body, "Body: " %>
-    <br />
-    <%= p.text_area :body %>
-  </div>
-  <br />
+<%= simple_form_for @post do |post_object| %>
+  <%= post_object.input :title %>
+  <%= post_object.input :body %>
   <%= p.submit %>
 <% end %>
 <hr />

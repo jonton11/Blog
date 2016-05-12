@@ -1,20 +1,9 @@
 <h1> Add a New Post </h1>
 
 <div class="container">
-<%= form_for @post, :html => {:class => 'form-vertical'} do |p| %>
-  <div class="form-group">
-    <%= p.label :title, "Title: " %>
-    <%= p.text_field :title, :class => "form-control" %>
-  </div>
-  <br />
-  <div class="form-group">
-    <%= p.label :body, "Body: " %>
-    <br />
-    <%= p.text_area :body, :class => "form-control", :rows => "10" %>
-  </div>
-  <br />
+<%= simple_form_for @post do |p| %>
+  <%= p.input :title %>
+  <%= p.input :body %>
   <%= p.submit class: "btn btn-default btn-md" %>
-
 <% end %>
 </div>
-<%= alert %>

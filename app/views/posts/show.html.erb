@@ -13,14 +13,9 @@
 
 <h3> Submit a Comment </h3>
 
-<%= form_for [@post, @comment], :html => {:class => 'form-vertical'} do |c| %>
-<div class='form-group'>
-  <%= c.label :body, "Comment: " %>
-  <br />
-  <%= c.text_area :body, :class => "form-control", :rows => "5" %>
-  <br /> <br />
-  <%= c.submit "Submit Comment", class: "btn btn-default btn-md" %>
-</div>
+<%= simple_form_for [@post, @comment] do |comment| %>
+  <%= comment.input :body %>
+  <%= comment.submit "Submit Comment" %>
 <% end %>
 
 <hr />

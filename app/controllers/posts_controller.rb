@@ -58,4 +58,9 @@ class PostsController < ApplicationController # :nodoc:
   def find_post
     @post = Post.find params[:id]
   end
+
+  def user_fav
+    @user_fav ||= @post.fav_for(current_user)
+  end
+  helper_method :user_fav
 end

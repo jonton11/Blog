@@ -6,6 +6,7 @@ class Post < ActiveRecord::Base # :nodoc:
   validates :body, presence: true
 
   has_many :comments, dependent: :destroy
+  has_many :favorites, dependent: :destroy
   belongs_to :user
   belongs_to :category
 
@@ -23,5 +24,9 @@ class Post < ActiveRecord::Base # :nodoc:
     else
       body
     end
+  end
+
+  def fav_for(user)
+    favorites.find_by_user_id user if user
   end
 end

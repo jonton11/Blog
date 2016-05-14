@@ -12,11 +12,14 @@ Rails.application.routes.draw do
 
   resources :posts do
     resources :comments, only: [:create, :destroy]
+    resources :favorites, only: [:create, :destroy]
   end
 
-  resources :users, only: [:new, :create, :edit, :update]
+  resources :users, only: [:new, :create, :show, :edit, :update]
+
   resources :sessions, only: [:new, :create] do
     delete :destroy, on: :collection
+    resources :favorites, only: [:index]
   end
   # You can have the root of your site routed with "root"
   root 'homes#index'

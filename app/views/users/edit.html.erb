@@ -10,8 +10,6 @@
   </ul>
 <% end %>
 
-<div class='container'>
-
 <%= form_for @user, :html => {:class => 'form-vertical'} do |f| %>
   <div class='form-group'>
     <%= f.label      :first_name, "First Name" %>
@@ -39,4 +37,3 @@
   </div>
     <%= f.submit "Save", class: "btn btn-default btn-md" %>
 <% end %>
-</div>

@@ -10,29 +10,26 @@
   </ul>
 <% end %>
 
-<div class='container'>
-
 <%= form_for @user, :html => {:class => 'form-vertical'} do |f| %>
   <div class='form-group'>
-    <%= f.label      :first_name, "First Name" %>
+    <%#= f.label      :first_name, "First Name" %>
     <%= f.text_field :first_name, :class => "form-control", :placeholder => "First Name" %>
   </div>
   <div class='form-group'>
-    <%= f.label      :last_name, "Last Name" %>
+    <%#= f.label      :last_name, "Last Name" %>
     <%= f.text_field :last_name, :class => "form-control", :placeholder => "Last Name" %>
   </div>
   <div class='form-group'>
-    <%= f.label       :email %>
+    <%#= f.label       :email %>
     <%= f.email_field :email, :class => "form-control", :placeholder => "johnsmith@email.com" %>
   </div>
   <div class='form-group'>
-    <%= f.label          :password %>
-    <%= f.password_field :password, :class => "form-control" %>
+    <%#= f.label          :password %>
+    <%= f.password_field :password, :class => "form-control", :placeholder => "Password" %>
   </div>
   <div class='form-group'>
-    <%= f.label          :password_confirmation, "Password Confirmation" %>
-    <%= f.password_field :password_confirmation, :class => "form-control" %>
+    <%#= f.label          :password_confirmation, "Password Confirmation" %>
+    <%= f.password_field :password_confirmation, :class => "form-control", :placeholder => "Password Confirmation" %>
   </div>
-    <%= f.submit "Sign Up", class: "btn btn-default btn-md" %>
+    <%= f.submit "Create Account", class: "btn btn-default" %>
 <% end %>
-</div>

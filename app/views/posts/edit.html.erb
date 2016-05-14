@@ -3,7 +3,7 @@
 <%= simple_form_for @post do |post_object| %>
   <%= post_object.input :title %>
   <%= post_object.input :body %>
-  <%= p.submit %>
+  <%= post_object.button :submit %>
 <% end %>
 <hr />
 <%= link_to "Post Page", post_path(@post) %>

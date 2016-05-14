@@ -1,4 +1,3 @@
-<%= notice %>
 <div class="container">
 
 <h2> <%= @post.title %>  </h2>
@@ -7,6 +6,12 @@
 
 <hr />
 
+<% if user_fav %>
+  <%= link_to "Un-Favorite", post_favorite_path(@post, user_fav), method: :delete %>
+<% else %>
+<%= link_to "Favorite", post_favorites_path(@post), method: :post %>
+<% end %>
+(Total Favorites: <%= @post.favorites.count %>)
 <%= link_to "Edit", edit_post_path(@post) %>
 |
 <%= link_to "Delete", post_path(@post), data: {confirm: "Are you sure you want to delete this post?"}, method: :delete%>
@@ -14,8 +19,9 @@
 <h3> Submit a Comment </h3>
 
 <%= simple_form_for [@post, @comment] do |comment| %>
-  <%= comment.input :body %>
-  <%= comment.submit "Submit Comment" %>
+  <%= comment.input :body, as: :text, label: false, placeholder: "Enter comment here" %>
+  <br />
+  <%= comment.submit "Submit Comment", class: "btn btn-primary"%>
 <% end %>
 
 <hr />

@@ -7,7 +7,6 @@ class PostsController < ApplicationController # :nodoc:
   end
 
   def create
-    post_params
     @post = Post.new(post_params)
 
     if @post.save
@@ -36,7 +35,6 @@ class PostsController < ApplicationController # :nodoc:
   end
 
   def update
-    post_params
     if @post.update post_params
       redirect_to @post, notice: 'Post has been updated'
     else
@@ -52,7 +50,7 @@ class PostsController < ApplicationController # :nodoc:
   private
 
   def post_params
-    params.require(:post).permit(:title, :body)
+    params.require(:post).permit(:title, :body, tag_ids: [])
   end
 
   def find_post

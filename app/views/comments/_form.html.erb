@@ -1,0 +1,8 @@
+<%= @comment.errors.full_messages.join(", ") %>
+<%= form_for [@post, @comment], remote: true do |c| %>
+  <div class='form-group'>
+    <%= c.text_area :body, :class => "form-control", :rows => "5" %>
+    <br /> <br />
+    <%= c.submit "Submit Comment", class: "btn btn-default btn-md" %>
+  </div>
+<% end %>

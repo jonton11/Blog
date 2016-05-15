@@ -1,14 +1,13 @@
 @import 'bootstrap-sprockets';
 @import 'bootstrap';
 
+@import "font-awesome-sprockets";
+@import "font-awesome";
+
 form div {
   margin: 15px 0;
 }
 
 .container {
   margin: 20px;
-}
-
-.navbar-right li {
-  text-align: right;
 }

@@ -1,31 +1,47 @@
 <% notice %>
 
 <h1> All Posts </h1>
-  <%= form_tag posts_path, :method => 'get' do %>
-  <div class="col-xs-3">
-    <div class='input-group'>
-      <%= text_field_tag :term, params[:term], class: 'form-control' %>
-      <span class="input-group-btn">
-        <%= submit_tag "Search", :name => nil, class: "btn btn-default btn-md" %>
-      </span>
-    </div>
-  </div>
-  <% end %>
-<br /><br /><br /><br /><br />
 
+<!-- Search Bar -->
+<div class="search form-group">
+  <%= form_tag posts_path, :method => 'get' do %>
+    <span class="fa fa-search"></span>
+    <%= text_field_tag :term, params[:term], class: 'form-control', placeholder: "Search All Posts", id: "search" %>
+  <% end %>
 <div>
+
+<br />
 <% if @posts.count(:all) == 0 %>
   <p> No posts found. </p>
   <%= link_to "All Posts", posts_path %>
 <% end %>
 
 <% unless @posts.count(:all) == 0 %>
-  <% @posts.each do |p| %>
-    <div>
-      <%= link_to p.title, post_path(p) %>
-    </div>
-    <hr />
-  <% end %>
+  <ul id="post-list">
+    <% @posts.each do |p| %>
+      <li> <%= link_to p.title, post_path(p) %> </li>
+    <% end %>
+  </ul>
   <%= paginate @posts %>
 <% end %>
-</div>
+
+<!-- Search Filter Function -->
+<script>
+var filter = function() {
+  $("#search").on("keyup", function() {
+    var filter = $('#search').val();
+    if ($('#search').val().length === 0) {
+      $('#post-list li').show();
+    } else {
+      $("#post-list li").each(function() {
+        if ($(this).text().search(new RegExp(filter, "i")) < 0) {
+          $(this).fadeOut();
+        } else {
+          $(this).show();
+        }
+      })
+    }
+  });
+};
+filter();
+</script>

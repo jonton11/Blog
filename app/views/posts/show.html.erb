@@ -1,37 +1,36 @@
 <div class="container">
 
-<h2> <%= @post.title %>  </h2>
-<br />
-<p> <%= @post.body %> </p>
-
-<hr />
-
-<% if user_fav %>
-  <%= link_to "Un-Favorite", post_favorite_path(@post, user_fav), method: :delete %>
-<% else %>
-<%= link_to "Favorite", post_favorites_path(@post), method: :post %>
-<% end %>
-(Total Favorites: <%= @post.favorites.count %>)
-<%= link_to "Edit", edit_post_path(@post) %>
-|
-<%= link_to "Delete", post_path(@post), data: {confirm: "Are you sure you want to delete this post?"}, method: :delete%>
-
-<h3> Submit a Comment </h3>
-
-<%= simple_form_for [@post, @comment] do |comment| %>
-  <%= comment.input :body, as: :text, label: false, placeholder: "Enter comment here" %>
+  <!-- Display Post -->
+  <h2> <%= @post.title %>  </h2>
   <br />
-  <%= comment.submit "Submit Comment", class: "btn btn-primary"%>
-<% end %>
-
-<hr />
-
-<h3> Comments </h3>
-
-<% @post.comments.each do |c| %>
-  <%= c.body %>
-  <%= link_to "Delete Comment", post_comment_path(@post, c), data: {confirm: "Are you sure?"}, method: :delete %>
+  <p> <%= @post.body %> </p>
   <br />
-  <br />
-<%end%>
+  <p> Tags: <%= @post.tags.map{|tag| tag.name}.join(", ") %> </p>
+
+  <!-- User actions -->
+  <% if user_fav %>
+    <%= link_to "Un-Favorite", post_favorite_path(@post, user_fav), method: :delete %>
+  <% else %>
+  <%= link_to "Favorite", post_favorites_path(@post), method: :post %>
+  <% end %>
+  |
+  <%= link_to "Edit", edit_post_path(@post) %>
+  |
+  <%= link_to "Delete", post_path(@post), data: {confirm: "Are you sure you want to delete this post?"}, method: :delete%>
+  <hr />
+
+  <!-- Submit a Comment -->
+  <h3> Submit a Comment </h3>
+    <div id="comment-form">
+      <%= render "/comments/form" %>
+    </div>
+  <!-- List All Comments -->
+  <h3> All Comments </h3>
+  <hr />
+
+  <div id="comments">
+    <% @post.comments.each do |com| %>
+      <%= render "/comments/comment", comment: com %>
+    <%end%>
+  </div>
 </div>

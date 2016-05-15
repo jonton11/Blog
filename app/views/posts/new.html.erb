@@ -1,14 +1,2 @@
 <h1> Add a New Post </h1>
-<%= form_for @post, :html => {:class => 'form-vertical'} do |p| %>
-  <div class="form-group">
-    <%= p.text_field :title, :class => "form-control", :placeholder => "Title" %>
-  </div>
-  <br />
-  <div class="form-group">
-    <%= p.text_area :body, :class => "form-control", :rows => "10", :placeholder => "Blog Post" %>
-  </div>
-  <br />
-  <%= p.submit class: "btn btn-default btn-md" %>
-
-<% end %>
-<%= alert %>
+<%= render "form" %>

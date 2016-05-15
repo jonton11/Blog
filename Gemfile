@@ -3,6 +3,7 @@ gem 'kaminari'
 
 gem 'simple_form'
 
+gem 'compass-rails'
 gem 'chosen-rails'
 
 gem 'carrierwave'
@@ -39,6 +40,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'bcrypt', '~> 3.1.7'
 
 gem 'bootstrap-sass'
+gem 'font-awesome-sass'
 
 # Use Unicorn as the app server
 # gem 'unicorn'

@@ -1,0 +1,15 @@
+<%= form_for @post, class: 'form-vertical' do |p| %>
+  <div class="form-group">
+    <%= p.label :title %>
+    <%= p.text_field :title, class: "form-control", placeholder: "Post Title" %>
+  </div>
+  <div class="form-group">
+    <%= p.label :body %>
+    <%= p.text_area :body, class: "form-control", rows: "10", placeholder: "Blog Post" %>
+  </div>
+  <div class="form-group">
+    <%= p.label :tag_ids, "Tags" %>
+    <%= p.select :tag_ids, Tag.all.map{ |t| [t.name, t.id] }, { include_blank: true }, multiple: true, class: "form-control chosen-select", data: {placeholder: "Tags"}%>
+  </div>
+  <%= p.submit class: "btn btn-default btn-lg" %>
+<% end %>

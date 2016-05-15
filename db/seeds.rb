@@ -17,3 +17,7 @@ Category.create(title: 'HTML/CSS')
 Category.create(title: 'Javascript')
 Category.create(title: 'Food')
 Category.create(title: 'Travel')
+
+30.times do
+  Tag.create(name: Faker::Hipster.word)
+end

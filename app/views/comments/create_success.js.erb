@@ -1,3 +1,10 @@
-$("#comments").prepend("<%= j render '/comments/comment', comment: @comment, style: 'display: none'%>");
-$("#comment-form").html("<%= j render '/comments/form', comment: Comment.new %>")
+// We can pass any additional arguments when we use j render
+// Here we pass a hidden_flag: true
+
+var comment_html = "<%= j render '/comments/comment', comment: @comment, hidden_flag: true %>";
+
+// Then we slide down afterwards
+$("#comments").prepend(comment_html);
 $("#<%= dom_id(@comment) %>").slideDown(1000);
+
+$("#comment-form").html("<%= j render '/comments/form', comment: Comment.new %>")

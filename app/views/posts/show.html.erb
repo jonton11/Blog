@@ -8,11 +8,9 @@
   <p> Tags: <%= @post.tags.map{|tag| tag.name}.join(", ") %> </p>
 
   <!-- User actions -->
-  <% if user_fav %>
-    <%= link_to "Un-Favorite", post_favorite_path(@post, user_fav), method: :delete %>
-  <% else %>
-  <%= link_to "Favorite", post_favorites_path(@post), method: :post %>
-  <% end %>
+  <span id="post-fav">
+    <%= render "/favorites/favorite" %>
+  </span>
   |
   <%= link_to "Edit", edit_post_path(@post) %>
   |
@@ -21,9 +19,10 @@
 
   <!-- Submit a Comment -->
   <h3> Submit a Comment </h3>
-    <div id="comment-form">
-      <%= render "/comments/form" %>
-    </div>
+  <div id="comment-form">
+    <%= render "/comments/form", comment: @comment %>
+  </div>
+
   <!-- List All Comments -->
   <h3> All Comments </h3>
   <hr />
@@ -33,4 +32,7 @@
       <%= render "/comments/comment", comment: com %>
     <%end%>
   </div>
+
+  <!-- Modal -->
+  <div class="modal fade" id="edit-comment" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"></div>
 </div>

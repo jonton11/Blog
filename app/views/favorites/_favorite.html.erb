@@ -1,0 +1,7 @@
+<% if user_fav %>
+  <%= link_to "Un-Favorite", post_favorite_path(@post, user_fav), method: :delete, remote: true %>
+<% else %>
+  <%= link_to "Favorite", post_favorites_path(@post), method: :post, remote: true %>
+<% end %>
+
+<!-- user_fav here is not a local variable -->

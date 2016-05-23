@@ -3,22 +3,32 @@ class FavoritesController < ApplicationController # :nodoc:
   # before_action :authorize_create, only: :create
   # before_action :authorize_destroy, only: :destroy
 
+  # Favorite
   def create
-    # Favorite
     favorite          = Favorite.new
     favorite.user     = current_user
     favorite.post     = post
-    if favorite.save
-      redirect_to post, notice: 'FAVORITED!'
-    else
-      redirect_to post, alert:  "You've already favorited this"
+
+    respond_to do |format|
+      if favorite.save
+        @user_fav ||= post.fav_for(current_user)
+        format.html { redirect_to post, notice: 'FAVORITED!' }
+        format.js { render }
+      else
+        format.html { redirect_to post, alert:  'Already favorited' }
+        format.js { render js: "alert('Can\ 't favorite, please refresh');" }
+      end
     end
   end
 
   def destroy
     # Unfavorite
     favorite.destroy
-    redirect_to post_path(favorite.post_id), notice: 'Un-favorited'
+    @user_fav = post.fav_for(current_user)
+    respond_to do |format|
+      format.html { redirect_to post_path(favorite.post_id), notice: 'Un-favorited' }
+      format.js { render }
+    end
   end
 
   private

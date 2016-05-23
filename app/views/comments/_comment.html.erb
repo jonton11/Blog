@@ -1,3 +1,11 @@
-<%= comment.body %>
-<%= link_to "Delete Comment", post_comment_path(@post, comment), data: {confirm: "Are you sure?"}, method: :delete %>
-<hr />
+<!-- Here we use a helper method to help hide the style -->
+<% hidden_flag ||= false %>
+
+<div id="<%= dom_id(comment) %>", style="<%= element_hide(hidden_flag)%>">
+  <%= comment.body %>
+  <br />
+  <%= link_to "Edit", edit_post_comment_path(@post, comment), remote: true, data: { toggle: "modal", target: "#edit-comment" } %>
+  |
+  <%= link_to "Delete Comment", post_comment_path(@post, comment), data: {confirm: "Are you sure?"}, method: :delete, remote: true %>
+  <hr />
+</div>

@@ -1,0 +1,35 @@
+<h1> Sign Up </h1>
+
+<% if @user.errors.any? %>
+  <ul>
+    <% @user.errors.full_messages.each do |msg| %>
+    <li>
+      <%= msg %>
+    </li>
+    <% end %>
+  </ul>
+<% end %>
+
+<%= form_for @user, :html => {:class => 'form-vertical'} do |f| %>
+  <div class='form-group'>
+    <%#= f.label      :first_name, "First Name" %>
+    <%= f.text_field :first_name, :class => "form-control", :placeholder => "First Name" %>
+  </div>
+  <div class='form-group'>
+    <%#= f.label      :last_name, "Last Name" %>
+    <%= f.text_field :last_name, :class => "form-control", :placeholder => "Last Name" %>
+  </div>
+  <div class='form-group'>
+    <%#= f.label       :email %>
+    <%= f.email_field :email, :class => "form-control", :placeholder => "johnsmith@email.com" %>
+  </div>
+  <div class='form-group'>
+    <%#= f.label          :password %>
+    <%= f.password_field :password, :class => "form-control", :placeholder => "Password" %>
+  </div>
+  <div class='form-group'>
+    <%#= f.label          :password_confirmation, "Password Confirmation" %>
+    <%= f.password_field :password_confirmation, :class => "form-control", :placeholder => "Password Confirmation" %>
+  </div>
+    <%= f.submit "Create Account", class: "btn btn-default" %>
+<% end %>

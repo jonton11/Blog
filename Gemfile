@@ -58,8 +58,6 @@ gem 'delayed_job_web'
 
 gem 'rack-cors', require: 'rack/cors'
 
-gem 'friendly_id'
-
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a
   # debugger console
@@ -67,6 +65,7 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'factory_girl_rails'
   gem 'faker'
+  gem 'pry'
 end
 
 group :development do
@@ -81,5 +80,4 @@ group :development do
   # Spring speeds up development by keeping your application running in the
   # background. Read more: https://github.com/rails/spring
   gem 'spring'
-  gem 'pry'
 end

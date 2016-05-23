@@ -1,4 +1,7 @@
 class Post < ActiveRecord::Base # :nodoc:
+  extend FriendlyId
+  friendly_id :title, use: :history
+
   validates :title, presence: true,
                     uniqueness: true,
                     length: { minimum: 7 }
